@@ -6,4 +6,6 @@ import com.project.chat.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
     User findByUserId(String usrId);
+
+    boolean existByUserId(String userId);
 }
