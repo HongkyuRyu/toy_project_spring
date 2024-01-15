@@ -9,7 +9,6 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,9 +23,9 @@ public class JwtProvider {
     public String create(String userId) {
         // 만료 시간 설정 (UTC 기준)
         Date expiredDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
-        
-        Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8))
-        
+
+        Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
+
         // header 파라미터에 claims를 추가하기 위해, JWT 빌더 호출
         // compact는 압축하고 서명-> jwt생성
         String jwt = Jwts.builder()
@@ -43,7 +42,7 @@ public class JwtProvider {
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
         try {
-
+            // JWT 파싱(read)
             subject = Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
