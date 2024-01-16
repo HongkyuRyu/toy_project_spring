@@ -4,9 +4,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.chat.common.CertificationNumber;
+import com.project.chat.dto.request.auth.CheckCertificationRequestDto;
 import com.project.chat.dto.request.auth.EmailCertificationRequestDto;
 import com.project.chat.dto.request.auth.IdCheckRequestDto;
 import com.project.chat.dto.response.ResponseDto;
+import com.project.chat.dto.response.auth.CheckCertificationResponseDto;
 import com.project.chat.dto.response.auth.EmailCertificationResponseDto;
 import com.project.chat.dto.response.auth.IdCheckResponseDto;
 import com.project.chat.entity.Certification;
@@ -70,6 +72,18 @@ public class AuthServiceImplement implements AuthService {
         }
 
         return EmailCertificationResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super CheckCertificationResponseDto> checkCertification(CheckCertificationRequestDto dto) {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return CheckCertificationResponseDto.succes();
     }
 
 }
